@@ -28,6 +28,7 @@
 #include "screen/element/MultiGauge.h"
 #include "screen/element/ThermalAssist.h"
 #include "sensor/VarioFilter.h"
+#include "airmass/AirMass.h"
 #include "ESP32NVS.h"
 #include "S2F.h"
 #include "Flarm.h"
@@ -448,6 +449,7 @@ static void vario_menu_create(SetupMenu *vae) {
 	vamod->addEntry("Gross");
 	vamod->addEntry("Netto");
 	vamod->addEntry("Cruise-Netto");
+	airmass::menuVarioModes(vamod);
 	vae->addEntry(vamod);
 
 	SetupMenuSelect *nemod = new SetupMenuSelect("Netto Mode", RST_NONE, nullptr, &netto_mode);
@@ -458,6 +460,7 @@ static void vario_menu_create(SetupMenu *vae) {
 
 	SetupMenu *vdamp = new SetupMenu("Vario Damping", vario_menu_create_damping);
 	vae->addEntry(vdamp);
+	airmass::menuVario(vae);
 
 	SetupMenu *meanclimb = new SetupMenu("Climb Stats", vario_menu_create_meanclimb);
 	meanclimb->setHelp("Parameter for Climb Statistics, displayed by green/red dot");

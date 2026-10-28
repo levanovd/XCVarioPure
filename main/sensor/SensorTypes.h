@@ -26,6 +26,7 @@ enum SensorType : uint8_t {
     HUMIDITY,
     FLAP_POSITION,
     BATTERY_VOLTAGE,
+    AIRMASS,
     MAX_SENSOR_ID
 };
 
